@@ -1,0 +1,19 @@
+.DaysList {
+  margin-top: 120px;
+  position: relative;
+
+  &__separator {
+    height: 2px;
+    background-color: rgba(255, 255, 255, 0.3);
+  }
+
+  &__selectedDayPointer {
+    position: absolute;
+    left: 50%;
+    border: 20px solid #fff;
+    border-left: 30px solid transparent;
+    border-right: 30px solid transparent;
+    border-bottom: none;
+    opacity: 0.3;
+  }
+}

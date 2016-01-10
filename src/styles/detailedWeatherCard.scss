@@ -1,0 +1,88 @@
+.DetailedWeatherCard {
+  width: 700px;
+  margin: 0 auto;
+  padding-top: 90px;
+
+  &__place {
+    font-family: 'Roboto-Thin', sans-serif;
+    font-size: 50px;
+    color: #FFFFFF;
+    text-align: center;
+  }
+
+  &__date {
+    font-family: 'Roboto-Light', sans-serif;
+    font-size: 20px;
+    color: #FFFFFF;
+    text-align: center;
+  }
+
+  &__temperatureCard {
+    width: 400px;
+    position: relative;
+    margin: 0 auto;
+    margin-top: 60px;
+    padding-left: 70px;
+  }
+
+  &__dateIcon {
+
+  }
+
+  &__weather {
+    font-family: Roboto-Thin, sans-serif;
+    font-size: 24px;
+    color: #FFFFFF;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    position: absolute;
+    top: 20px;
+    left: 150px;
+  }
+
+  &__weatherIcon {
+    position: absolute;
+    width: 60px;
+    left: 80px;
+    top: 5px;
+  }
+
+  &__temperature {
+    font-family: Roboto-Medium, sans-serif;
+    font-size: 200px;
+    color: #fff;
+    text-align: center;
+
+
+  }
+
+  &__temperature_minus {
+    &:before {
+      content: '-';
+      position: absolute;
+      left: 50px;
+    }
+  }
+
+  &__degreeSign {
+    font-size: 80px;
+    vertical-align: 85px;
+  }
+
+  &__miscInfo {
+    display: flex;
+    font-family: Roboto-Light, sans-serif;
+    font-size: 14px;
+    color: #fff;
+    text-transform: uppercase;
+    justify-content: space-around;
+    margin: 0 110px;
+    letter-spacing: 1px;
+    line-height: 20px;
+  }
+
+  &__sunriseIcon, &__sunsetIcon {
+    width: 20px;
+    vertical-align: text-top;
+  }
+}
