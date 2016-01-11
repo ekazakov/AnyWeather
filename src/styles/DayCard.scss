@@ -1,0 +1,60 @@
+.DayCard {
+  color: #fff;
+  height: 160px;
+  width: 140px;
+  padding: 10px;
+  box-sizing: border-box;
+  position: relative;
+
+  &:first-child {
+    //margin-left: auto;
+  }
+
+  &:last-child {
+    //margin-right: auto;
+  }
+
+  &__weatherIcon {
+    width: 60px;
+  }
+
+  &__day {
+    font-family: Roboto-Bold, sans-serif;
+    font-size: 16px;
+    color: #FFFFFF;
+  }
+
+  &__weather {
+    font-family: Roboto-Thin, sans-serif;
+    font-size: 15px;
+    color: #FFFFFF;
+  }
+
+  &__temperature {
+
+  }
+
+  &__nightTemperature {
+    font-family: Roboto-Thin, sans-serif;
+    font-size: 16px;
+    color: #fff;
+    vertical-align: 18px;
+    margin-left: 5px;
+  }
+
+  &__dayTemperature {
+    font-family: Roboto-Thin, sans-serif;
+    font-size: 40px;
+    color: #FFFFFF;
+    position: absolute;
+    left: 7px;
+  }
+
+  &__dayTemperature_minus {
+    &:before {
+      content: '-';
+      position: absolute;
+      left: -12px;
+    }
+  }
+}
