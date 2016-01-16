@@ -20,7 +20,7 @@ export default (props) => {
         fill: '#fff'
     }, styles);
 
-    console.log('icon name', name);
+    //console.log('icon name', name);
     const {component: IconComponent, viewBox} = icons[name];
 
     if (viewBox) {

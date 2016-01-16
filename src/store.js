@@ -1,4 +1,5 @@
 import { createStore, applyMiddleware, compose } from 'redux';
+import { middleware as awaitMiddleware } from 'redux-await';
 import thunk from 'redux-thunk';
 import createLogger from 'redux-logger';
 import rootReducer from './reducers/reducers';
@@ -12,7 +13,7 @@ const logger = createLogger(
 );
 
 const createStoreWithMiddleware = applyMiddleware(
-    thunk,
+    awaitMiddleware,
     logger
 )(createStore);
 

@@ -50,7 +50,13 @@ const cards = fromJS([
 ]);
 
 export class App extends Component {
+    componentWillMount() {
+        const {dispatch} = this.props;
+        dispatch(actions.fooo());
+    }
+
     render() {
+        console.log('redner', this.props);
         return <div className={block('container')}>
             <DetailedWeatherCard/>
             <DaysList cards={cards}/>
@@ -58,23 +64,3 @@ export class App extends Component {
     }
 }
 
-
-/*
-<div className={block('card')}>
-    <div className={block('cardBody')}>
-
-        <div className={block('icon')}>
-            <Icon/>
-        </div>
-        <div className={block('temperature')}>-25°C</div>
-        <div className={block('place')}>Saint-Petersburg</div>
-        <div className={block('day')}>Today</div>
-        <div className={block('weather')}>Clear</div>
-        <div className={block('misc')}>
-            <div>humidity 82%</div>
-            <div>sunrise at 09:55</div>
-            <div>sunset at 16:15</div>
-        </div>
-    </div>
-</div>
-*/
