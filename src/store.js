@@ -13,6 +13,7 @@ const logger = createLogger(
 );
 
 const createStoreWithMiddleware = applyMiddleware(
+    thunk,
     awaitMiddleware,
     logger
 )(createStore);

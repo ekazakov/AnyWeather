@@ -73,10 +73,14 @@
     "bem-cn": "^1.2.1",
     "immutable": "^3.7.6",
     "isomorphic-fetch": "^2.2.1",
+    "lodash.contains": "^2.4.3",
+    "lodash.flow": "^3.2.1",
+    "lodash.pick": "^4.0.0",
     "react": "^0.14.2",
     "react-redux": "^4.0.0",
     "redux": "^3.0.4",
     "redux-await": "^5.0.0",
-    "redux-immutablejs": "0.0.8"
+    "redux-immutablejs": "0.0.8",
+    "suncalc": "^1.7.0"
   }
 }

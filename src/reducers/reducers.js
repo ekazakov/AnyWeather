@@ -5,11 +5,17 @@ import { reducer as awaitReducer } from 'redux-await';
 
 import constants from '../actions/actions';
 
-const initialState = fromJS({data: {x: 1}});
+const initialState = fromJS({});
 
 
 function reducer (state = initialState, action = {}) {
-    console.log('reducer', state.toJS());
+    switch (action.type) {
+        case constants.IDENTIFY_LOCATION:
+            return state.set('location', action.payload.location);
+
+        case constants.GET_WEATHER:
+            return state.set('weather', action.payload.weather);
+    }
     return state;
 }
 

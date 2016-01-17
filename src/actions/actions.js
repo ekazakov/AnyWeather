@@ -1,24 +1,48 @@
 import { AWAIT_MARKER } from 'redux-await';
-
+import * as api from './api';
+import { countryNameByCode } from '../countryCodes';
 const constants = {
-    FOO: '@@any-weather/FOO',
+    IDENTIFY_LOCATION: '@@any-weather/IDENTIFY_LOCATION',
+    GET_WEATHER: '@@any-weather/GET_WEATHER'
 };
-
-function delay(time) {
-    return new Promise(resolver => setTimeout(resolver, time));
-}
 
 export default constants;
 
-export function fooo() {
+function requestGeoLocation() {
+    return new Promise((resolve, reject) =>
+        navigator.geolocation.getCurrentPosition(resolve, reject));
+}
+
+export function getWeather(location) {
     return {
-        type: constants.FOO,
         AWAIT_MARKER,
+        type: constants.GET_WEATHER,
         payload: {
-            fooo: delay(3000).then(() => {
-                console.log('action resolved');
-                return [1, 2, 3];
-            })
+            weather: api.getWeather(location)
         }
+    };
+}
+
+export function getLocation(dispatch) {
+    const location = requestGeoLocation()
+        .catch(api.identifyLocationByIp)
+        .then(location => location.coords != null ? api.getCityByCoordinates(location.coords) : location)
+        .catch(err => console.error('req err:', err))
+    ;
+
+    location.then(location =>
+        setTimeout(() =>
+            dispatch(getWeather(location.toJS())), 0));
+
+    return {
+        AWAIT_MARKER,
+        type: constants.IDENTIFY_LOCATION,
+        payload: {location}
+    };
+}
+
+export function initialize() {
+    return (dispatch) => {
+        dispatch(getLocation(dispatch));
     };
 }

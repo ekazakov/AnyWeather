@@ -52,11 +52,10 @@ const cards = fromJS([
 export class App extends Component {
     componentWillMount() {
         const {dispatch} = this.props;
-        dispatch(actions.fooo());
+        dispatch(actions.initialize());
     }
 
     render() {
-        console.log('redner', this.props);
         return <div className={block('container')}>
             <DetailedWeatherCard/>
             <DaysList cards={cards}/>
