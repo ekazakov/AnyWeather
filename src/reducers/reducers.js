@@ -5,7 +5,7 @@ import { reducer as awaitReducer } from 'redux-await';
 
 import constants from '../actions/actions';
 
-const initialState = fromJS({});
+const initialState = fromJS({location: {}, weather: []});
 
 
 function reducer (state = initialState, action = {}) {

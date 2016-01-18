@@ -8,7 +8,6 @@ const store = configureStore();
 
 
 const mapStateToProps = state => {
-    console.log( 'map state to props', state);
     return state.data.toObject();
 };
 

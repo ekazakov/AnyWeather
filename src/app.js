@@ -8,6 +8,7 @@ import {Map as IMap, fromJS} from 'immutable';
 
 import DetailedWeatherCard from './components/DetailedWeatherCard';
 import DaysList from './components/DaysList';
+import Preloader from './components/Preloader';
 
 const block = _b('App');
 
@@ -42,7 +43,7 @@ const cards = fromJS([
     },
     {
         day: 'Fri, 30',
-        icon: 'sun',
+        icon: 'clearSkyDay',
         nightTemperature: -20,
         dayTemperature: -23,
         weather: 'clear'
@@ -56,8 +57,16 @@ export class App extends Component {
     }
 
     render() {
+        const {weather, location, errors, statuses} = this.props;
+
+        if (statuses.location !== 'success' || statuses.weather !== 'success') {
+            return <div className={block('container')}>
+                <Preloader/>
+            </div>
+        }
+
         return <div className={block('container')}>
-            <DetailedWeatherCard/>
+            <DetailedWeatherCard weather={weather.get(0)} location={location}/>
             <DaysList cards={cards}/>
         </div>;
     }

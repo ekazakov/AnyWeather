@@ -3,9 +3,7 @@ import flow from 'lodash.flow';
 import pick from 'lodash.pick';
 import {fromJS} from 'immutable';
 import request from './request';
-
 import { countryNameByCode } from '../countryCodes';
-
 
 export function identifyLocationByIp() {
     const format = (location) =>
@@ -48,8 +46,8 @@ export function getWeather({city, country}) {
             ...pick(today.main, ['pressure', 'humidity']),
             date: today.dt,
             curTemp: today.main.temp,
-            ...pick(today.sys, ['sunrise', 'sunser']),
-            sky: pick(today.weather, ['main', 'description']),
+            ...pick(today.sys, ['sunrise', 'sunset']),
+            sky: pick(today.weather[0], ['main', 'description']),
             speed: today.wind.speed,
             isToday: true
         });
@@ -59,7 +57,7 @@ export function getWeather({city, country}) {
             date: item.dt,
             dayTemp: item.temp.day,
             nightTemp: item.temp.night,
-            sky: pick(today.weather, ['main', 'description']),
+            sky: pick(item.weather, ['main', 'description']),
             // TODO: calculate sunrise and sunset
             isToday: false
         });
@@ -70,12 +68,12 @@ export function getWeather({city, country}) {
         request.get('http://api.openweathermap.org/data/2.5/weather', {
             APPID: 'afb68b1c481390fa5c80cec4885c327b',
             q: `${city},${country}`,
-            metric: 'metric'
+            units: 'metric'
         }),
         request.get('http://api.openweathermap.org/data/2.5/forecast/daily', {
             APPID: 'afb68b1c481390fa5c80cec4885c327b',
             q: `${city},${country}`,
-            metric: 'metric',
+            units: 'metric',
             cnt: 5
         })
     ]).then(flow(format, fromJS));

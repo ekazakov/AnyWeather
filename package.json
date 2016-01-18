@@ -71,6 +71,7 @@
   },
   "dependencies": {
     "bem-cn": "^1.2.1",
+    "dateformat": "^1.0.12",
     "immutable": "^3.7.6",
     "isomorphic-fetch": "^2.2.1",
     "lodash.contains": "^2.4.3",
