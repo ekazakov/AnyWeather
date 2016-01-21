@@ -47,7 +47,7 @@ export function getWeather({city, country}) {
             date: today.dt,
             curTemp: today.main.temp,
             ...pick(today.sys, ['sunrise', 'sunset']),
-            sky: pick(today.weather[0], ['main', 'description']),
+            condition: pick(today.weather[0], ['main', 'description', 'id']),
             speed: today.wind.speed,
             isToday: true
         });
@@ -57,7 +57,7 @@ export function getWeather({city, country}) {
             date: item.dt,
             dayTemp: item.temp.day,
             nightTemp: item.temp.night,
-            sky: pick(item.weather, ['main', 'description']),
+            condition: pick(item.weather[0], ['main', 'description', 'id']),
             // TODO: calculate sunrise and sunset
             isToday: false
         });

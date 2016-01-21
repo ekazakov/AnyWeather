@@ -67,7 +67,7 @@ export class App extends Component {
 
         return <div className={block('container')}>
             <DetailedWeatherCard weather={weather.get(0)} location={location}/>
-            <DaysList cards={cards}/>
+            <DaysList cards={weather.rest()}/>
         </div>;
     }
 }

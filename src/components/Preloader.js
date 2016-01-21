@@ -6,7 +6,7 @@ const block = _b('Preloader');
 
 const Preloader = (props) => {
     return <div className={block()}>
-        <Icon name="sun" className={block('icon')}/>
+        <Icon name="clearSkyDay" className={block('icon')}/>
     </div>;
 };
 

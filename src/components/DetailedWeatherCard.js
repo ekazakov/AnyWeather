@@ -14,8 +14,8 @@ export default class DetailedWeatherCard extends Component {
             <div className={block('date')}>Today, {dateFormat(today, 'dd mmm yy')}</div>
 
             <div className={block('temperatureCard')}>
-                <Icon className={block('weatherIcon')} name="sun"/>
-                <div className={block('weather')}>{weather.getIn(['sky', 'main'])}</div>
+                <Icon className={block('weatherIcon')} conditionId={weather.getIn(['condition', 'id'])}/>
+                <div className={block('weather')}>{weather.getIn(['condition', 'main'])}</div>
                 <div className={block('temperature', {minus: weather.get('curTemp') < 0})}>
                     {Math.abs(weather.get('curTemp'))}
                     <span className={block('degreeSign')}>°C</span>
