@@ -24,19 +24,14 @@ export function getWeather(location) {
     };
 }
 
-export function getLocation(dispatch) {
+export function getCurrnentLocation(dispatch) {
     const location = requestGeoLocation()
         .catch(api.identifyLocationByIp)
         .then(location => location.coords != null ? api.getCityByCoordinates(location.coords) : location)
         .catch(err => console.error('req err:', err))
     ;
 
-    location
-        .then((data) => {
-            console.log(data);
-            return data;
-        })
-        .then(location =>
+    location.then(location =>
         setTimeout(() =>
             dispatch(getWeather(location.toJS())), 0));
 
@@ -49,7 +44,7 @@ export function getLocation(dispatch) {
 
 export function initialize() {
     return (dispatch) => {
-        dispatch(getLocation(dispatch));
+        dispatch(getCurrnentLocation(dispatch));
     };
 }
 
@@ -58,4 +53,11 @@ export function selectCard(index) {
         type: constants.SELECT_CARD,
         index
     };
+}
+
+export function changeLocation(locationIndex) {
+    return (dispatch, getState) => {
+        const location = getState().getIn(['data', 'locationSearch', locationIndex]).toJS();
+        dispatch(getWeather(location));
+    }
 }

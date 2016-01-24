@@ -3,6 +3,7 @@ import Icon from './Icon';
 import ShowIf from './ShowIf';
 import _b from 'bem-cn';
 import dateFormat from 'dateformat';
+import * as actions from '../actions/actions';
 
 
 const block = _b('DetailedWeatherCard');
@@ -12,8 +13,12 @@ function isDayTime(date, sunrise, sunset) {
 }
 
 export default class DetailedWeatherCard extends Component {
+    onLocationChange(event) {
+        this.props.dispatch(actions.changeLocation(event.target.value))
+    }
 
     renderToday() {
+        const {abs, round} = Math;
         const {weather} = this.props;
 
         const date = new Date(weather.getIn(['today', 'date']) * 1000);
@@ -29,7 +34,7 @@ export default class DetailedWeatherCard extends Component {
                       isDay={isDay}/>
                 <div className={block('weather')}>{weather.getIn(['today', 'condition', 'main'])}</div>
                 <div className={block('temperature', {minus: weather.getIn(['today', 'curTemp']) < 0})}>
-                    {Math.abs(weather.getIn(['today', 'curTemp']))}
+                    {abs(round(weather.getIn(['today', 'curTemp'])))}
                     <span className={block('degreeSign')}>°C</span>
                 </div>
             </div>
@@ -75,14 +80,7 @@ export default class DetailedWeatherCard extends Component {
     }
 
     render() {
-        const {weather, location, selectedCard} = this.props;
-
-
-
-        //const date = new Date(weather.getIn(['today', 'date']) * 1000);
-        //const sunrise = new Date(weather.getIn(['today', 'sunrise']) * 1000);
-        //const sunset = new Date(weather.getIn(['today', 'sunset']) * 1000);
-        //const isDay = isDayTime(date, sunrise, sunset);
+        const {weather, location, selectedCard, locationSearch} = this.props;
 
         return <div className={block()}>
             <div className={block('place')}>
@@ -90,6 +88,10 @@ export default class DetailedWeatherCard extends Component {
                     {location.get('city')}, {location.get('country')}
                     <Icon name="chevron" className={block('chevron')}/>
                 </button>
+                <select onChange={this.onLocationChange.bind(this)}>
+                    {locationSearch.map((loc, index) =>
+                        <option value={index} key={index}>{loc.get('city')}, {loc.get('country')}</option>)}
+                </select>
             </div>
             <ShowIf predicate={selectedCard === 0}>{this.renderToday()}</ShowIf>
             <ShowIf predicate={selectedCard !== 0}>{this.renderForecastDay()}</ShowIf>

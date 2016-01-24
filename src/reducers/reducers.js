@@ -5,7 +5,15 @@ import { reducer as awaitReducer } from 'redux-await';
 
 import constants from '../actions/actions';
 
-const initialState = fromJS({location: {}, weather: []});
+const locationSearch = [
+    { city: 'Saint Petersburg', country: 'Russia', latitude: 59.972933, longitude: 30.392719},
+    { city: 'Moscow', country: 'Russia', latitude: 55.7522200, longitude: 37.6155600},
+    { city: 'San Francisco', country: 'USA', latitude: 37.783333, longitude: -122.416667},
+    { city: 'London', country: 'UK', latitude: 51.5085300, longitude: -0.1257400},
+    { city: 'Berlin', country: 'Germany', latitude: 52.5243700, longitude: 13.4105300}
+];
+
+const initialState = fromJS({location: {}, weather: {}, locationSearch});
 
 
 function reducer (state = initialState, action = {}) {

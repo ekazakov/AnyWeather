@@ -5,7 +5,18 @@
 
   &__place {
     text-align: center;
+    position: relative;
   }
+
+  //&__locationSelect {
+  //  position: absolute;
+  //  font-size: 50px;
+  //  border: none;
+  //  background: none;
+  //  -webkit-appearance: none;
+  //  font-family: 'Roboto-Thin', sans-serif;
+  //  color: transparent;
+  //}
 
   &__placeButton {
     border: none;
