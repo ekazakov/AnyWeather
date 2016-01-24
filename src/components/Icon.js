@@ -1,10 +1,6 @@
 import React from 'react';
 import iconByCodeAndDay, * as icons from './Icons';
 
-const svgGroup = (props) => {
-
-};
-
 export default (props) => {
     const {name, styles, conditionId, isDay,...restProps} = props;
     const svgDefaultParams = {
@@ -22,7 +18,7 @@ export default (props) => {
 
     const iconName = (id, isDay) => name || iconByCodeAndDay(id, isDay);
 
-    console.log('icon name', name);
+    //console.log('icon name', name || iconName(conditionId, isDay));
     const {component: IconComponent, viewBox} = icons[iconName(conditionId, isDay)];
 
     if (viewBox) {

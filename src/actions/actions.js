@@ -3,7 +3,8 @@ import * as api from './api';
 import { countryNameByCode } from '../countryCodes';
 const constants = {
     IDENTIFY_LOCATION: '@@any-weather/IDENTIFY_LOCATION',
-    GET_WEATHER: '@@any-weather/GET_WEATHER'
+    GET_WEATHER: '@@any-weather/GET_WEATHER',
+    SELECT_CARD: '@@any-weather/SELECT_CARD'
 };
 
 export default constants;
@@ -30,7 +31,12 @@ export function getLocation(dispatch) {
         .catch(err => console.error('req err:', err))
     ;
 
-    location.then(location =>
+    location
+        .then((data) => {
+            console.log(data);
+            return data;
+        })
+        .then(location =>
         setTimeout(() =>
             dispatch(getWeather(location.toJS())), 0));
 
@@ -44,5 +50,12 @@ export function getLocation(dispatch) {
 export function initialize() {
     return (dispatch) => {
         dispatch(getLocation(dispatch));
+    };
+}
+
+export function selectCard(index) {
+    return {
+        type: constants.SELECT_CARD,
+        index
     };
 }

@@ -14,7 +14,13 @@ function reducer (state = initialState, action = {}) {
             return state.set('location', action.payload.location);
 
         case constants.GET_WEATHER:
-            return state.set('weather', action.payload.weather);
+            return state
+                .set('weather', action.payload.weather)
+                .set('selectedCard', 0)
+            ;
+
+        case constants.SELECT_CARD:
+            return state.set('selectedCard', action.index);
     }
     return state;
 }

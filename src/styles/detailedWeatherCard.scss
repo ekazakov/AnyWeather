@@ -4,10 +4,23 @@
   padding-top: 90px;
 
   &__place {
+    text-align: center;
+  }
+
+  &__placeButton {
+    border: none;
+    background: none;
     font-family: 'Roboto-Thin', sans-serif;
     font-size: 50px;
     color: #FFFFFF;
     text-align: center;
+    cursor: pointer;
+  }
+
+  &__chevron {
+    width: 30px;
+    vertical-align: middle;
+    margin-left: 10px;
   }
 
   &__date {
@@ -28,6 +41,8 @@
   &__dateIcon {
 
   }
+
+
 
   &__weather {
     font-family: Roboto-Thin, sans-serif;
