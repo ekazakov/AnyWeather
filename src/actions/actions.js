@@ -4,7 +4,9 @@ import { countryNameByCode } from '../countryCodes';
 const constants = {
     IDENTIFY_LOCATION: '@@any-weather/IDENTIFY_LOCATION',
     GET_WEATHER: '@@any-weather/GET_WEATHER',
-    SELECT_CARD: '@@any-weather/SELECT_CARD'
+    SELECT_CARD: '@@any-weather/SELECT_CARD',
+    LOCATION_INPUT_CHANGE: '@@any-weather/LOCATION_INPUT_CHANGE',
+    UPDATE_LOCATION: '@@any-weather/UPDATE_LOCATION'
 };
 
 export default constants;
@@ -19,8 +21,15 @@ export function getWeather(location) {
         AWAIT_MARKER,
         type: constants.GET_WEATHER,
         payload: {
-            weather: api.getWeather(location)
+            weather: api.getWeather(location.toJS())
         }
+    };
+}
+
+export function updateLocation(location) {
+    return {
+        type: constants.UPDATE_LOCATION,
+        location
     };
 }
 
@@ -33,7 +42,7 @@ export function getCurrnentLocation(dispatch) {
 
     location.then(location =>
         setTimeout(() =>
-            dispatch(getWeather(location.toJS())), 0));
+            dispatch(getWeather(location)), 0));
 
     return {
         AWAIT_MARKER,
@@ -57,7 +66,15 @@ export function selectCard(index) {
 
 export function changeLocation(locationIndex) {
     return (dispatch, getState) => {
-        const location = getState().getIn(['data', 'locationSearch', locationIndex]).toJS();
+        const location = getState().getIn(['data', 'locationSearch', locationIndex]);
+        dispatch(updateLocation(location));
         dispatch(getWeather(location));
     }
+}
+
+export function locationChange(locationInput) {
+    return {
+        type: constants.LOCATION_INPUT_CHANGE,
+        locationInput
+    };
 }

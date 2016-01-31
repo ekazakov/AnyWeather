@@ -53,7 +53,7 @@ export function getCityByCoordinates({latitude,longitude}) {
 function sunriseAndSunset(date, latitude, longitude) {
     const {sunrise, sunset} = SunCalc.getTimes(date, latitude, longitude);
 
-    console.log(`${date}, (${latitude}, ${longitude}) sunrise: ${sunrise}, sunset: ${sunset}`);
+    //console.log(`${date}, (${latitude}, ${longitude}) sunrise: ${sunrise}, sunset: ${sunset}`);
 
     return {
         sunrise: sunrise.valueOf(),

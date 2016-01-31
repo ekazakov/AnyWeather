@@ -5,6 +5,7 @@ import _b from 'bem-cn';
 import dateFormat from 'dateformat';
 import * as actions from '../actions/actions';
 
+import {LocationSelect} from './LocationSelect';
 
 const block = _b('DetailedWeatherCard');
 
@@ -13,8 +14,12 @@ function isDayTime(date, sunrise, sunset) {
 }
 
 export default class DetailedWeatherCard extends Component {
-    onLocationChange(event) {
-        this.props.dispatch(actions.changeLocation(event.target.value))
+    onLocationSelect(locationIndex) {
+        this.props.dispatch(actions.changeLocation(locationIndex));
+    }
+
+    onInputChange(text) {
+        this.props.dispatch(actions.locationChange(text));
     }
 
     renderToday() {
@@ -84,14 +89,10 @@ export default class DetailedWeatherCard extends Component {
 
         return <div className={block()}>
             <div className={block('place')}>
-                <button className={block('placeButton')}>
-                    {location.get('city')}, {location.get('country')}
-                    <Icon name="chevron" className={block('chevron')}/>
-                </button>
-                <select onChange={this.onLocationChange.bind(this)}>
-                    {locationSearch.map((loc, index) =>
-                        <option value={index} key={index}>{loc.get('city')}, {loc.get('country')}</option>)}
-                </select>
+                <LocationSelect {...this.props}
+                    onLocationSelect={this.onLocationSelect.bind(this)}
+                    onInputChange={this.onInputChange.bind(this)}
+                />
             </div>
             <ShowIf predicate={selectedCard === 0}>{this.renderToday()}</ShowIf>
             <ShowIf predicate={selectedCard !== 0}>{this.renderForecastDay()}</ShowIf>

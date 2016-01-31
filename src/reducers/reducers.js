@@ -13,13 +13,24 @@ const locationSearch = [
     { city: 'Berlin', country: 'Germany', latitude: 52.5243700, longitude: 13.4105300}
 ];
 
-const initialState = fromJS({location: {}, weather: {}, locationSearch});
+const initialState = fromJS({
+    location: {},
+    weather: {},
+    locationSearch,
+    locationInput: ''
+});
 
+function locationToString(location) {
+    return `${location.get('city')}, ${location.get('country')}`;
+}
 
 function reducer (state = initialState, action = {}) {
     switch (action.type) {
         case constants.IDENTIFY_LOCATION:
-            return state.set('location', action.payload.location);
+            return state
+                .set('location', action.payload.location)
+                .set('locationInput', locationToString(action.payload.location))
+            ;
 
         case constants.GET_WEATHER:
             return state
@@ -29,7 +40,17 @@ function reducer (state = initialState, action = {}) {
 
         case constants.SELECT_CARD:
             return state.set('selectedCard', action.index);
+
+        case constants.LOCATION_INPUT_CHANGE:
+            return state.set('locationInput', action.locationInput);
+
+        case constants.UPDATE_LOCATION:
+            return state
+                .set('location', action.location)
+                .set('locationInput', locationToString(action.location))
+            ;
     }
+
     return state;
 }
 

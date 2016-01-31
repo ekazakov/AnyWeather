@@ -7,6 +7,7 @@
 @import "DaysList";
 @import "DayCard";
 @import "Preloader";
+@import "LocationSelect";
 
 html, body, #root {
   height: 100%;
@@ -18,7 +19,6 @@ html, body, #root {
     width: 100%;
     min-height: 100%;
     background-color: #E3770B;
-    padding-bottom: 40px;
   }
 
   &__card {

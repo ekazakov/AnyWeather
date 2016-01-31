@@ -1,9 +1,11 @@
 .DetailedWeatherCard {
   width: 700px;
   margin: 0 auto;
-  padding-top: 90px;
+  padding-top: 60px;
+  text-align: center;
 
   &__place {
+    display: inline-block;
     text-align: center;
     position: relative;
   }
@@ -17,22 +19,6 @@
   //  font-family: 'Roboto-Thin', sans-serif;
   //  color: transparent;
   //}
-
-  &__placeButton {
-    border: none;
-    background: none;
-    font-family: 'Roboto-Thin', sans-serif;
-    font-size: 50px;
-    color: #FFFFFF;
-    text-align: center;
-    cursor: pointer;
-  }
-
-  &__chevron {
-    width: 30px;
-    vertical-align: middle;
-    margin-left: 10px;
-  }
 
   &__date {
     font-family: 'Roboto-Light', sans-serif;
